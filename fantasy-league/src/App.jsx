@@ -21,7 +21,8 @@ import {
   Maximize2,
   ListMusic,
   Zap,
-  Clapperboard
+  Clapperboard,
+  MonitorPlay
 } from 'lucide-react';
 import Background3D from './components/Background3D';
 import Chatbot from './components/Chatbot';
@@ -85,7 +86,7 @@ function Sidebar({ setToken }) {
     { path: '/watch-party', label: 'Watch Party Lobby', icon: Users },
     { path: '/watch-live', label: 'Watch Live', icon: Tv },
     { path: '/movies', label: 'Movies', icon: Clapperboard },
-    { path: '/sportsurge', label: 'Sportsurge Live', icon: Zap, live: true },
+    { path: '/live-streams', label: 'Live Streams', icon: MonitorPlay, live: true },
     { path: '/stats', label: 'Player Stats', icon: Award },
     { path: '/admin', label: 'Race Engineer', icon: Settings },
   ];
@@ -264,7 +265,8 @@ function AppRoutes({ activeSport, setActiveSport, token, activeMatch, setActiveM
       <Route path="/watch-party" element={<WatchParty activeSport={activeSport} setActiveSport={setActiveSport} />} />
       <Route path="/watch-live" element={<WatchLive />} />
       <Route path="/movies" element={<Movies />} />
-      <Route path="/sportsurge" element={<SportsurgeLive />} />
+      <Route path="/live-streams" element={<SportsurgeLive />} />
+      <Route path="/sportsurge" element={<Navigate to="/live-streams" replace />} />
       <Route path="/stats" element={<PlayerStats />} />
       <Route path="/leaderboard" element={<Leaderboard activeSport={activeSport} setActiveSport={setActiveSport} />} />
       <Route path="/create-team" element={<Navigate to="/stats" replace />} />
@@ -342,7 +344,7 @@ export default function App() {
                       <nav style={{ display: 'flex', gap: '20px', fontSize: '0.85rem', color: '#e5e5e5' }}>
                         <Link to="/" style={{ fontWeight: 600 }}>Home</Link>
                         <Link to="/watch-live" style={{ opacity: 0.8 }}>Live Streams</Link>
-                        <Link to="/sportsurge" style={{ opacity: 0.8 }}>Sportsurge</Link>
+                        <Link to="/live-streams" style={{ opacity: 0.8 }}>Live Streams</Link>
                         <Link to="/stats" style={{ opacity: 0.8 }}>Player Stats</Link>
                         <Link to="/watch-party" style={{ opacity: 0.8 }}>Watch Parties</Link>
                         <Link to="/leaderboard" style={{ opacity: 0.8 }}>Leaderboard</Link>

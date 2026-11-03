@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Calendar, MapPin, Trophy, Radio, ExternalLink, Flame, Search, Grid, Eye, Zap } from 'lucide-react';
-import { getSportsurgeF1Url } from '../data/sportsurgeLinks';
+import { Calendar, MapPin, Trophy, Radio, ExternalLink, Flame, Search, Grid, Eye, Zap, MonitorPlay } from 'lucide-react';
 import { SportsurgeButton } from '../components/SportsurgeLinks';
 import { useF1Schedule } from '../components/useEspnFixtures';
 
@@ -131,17 +130,15 @@ export default function F1Calendar() {
             >
               <Radio size={16} /> Watch Races Live
             </Link>
-            <a
-              href={getSportsurgeF1Url()}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/live-streams?sport=f1"
               className="ghost-button"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '12px 20px', textDecoration: 'none', color: '#ff8a1c', borderColor: 'rgba(255,138,28,0.4)', fontWeight: 'bold', fontSize: '0.85rem' }}
             >
-              <Zap size={16} /> Sportsurge F1 <ExternalLink size={13} />
-            </a>
-            <Link to="/sportsurge?sport=f1" style={{ alignSelf: 'center', color: '#ff8a1c', fontWeight: 700, fontSize: '0.82rem' }}>
-              All Sportsurge links →
+              <MonitorPlay size={16} /> F1 Live Streams
+            </Link>
+            <Link to="/live-streams?sport=f1" style={{ alignSelf: 'center', color: '#ff8a1c', fontWeight: 700, fontSize: '0.82rem' }}>
+              All live streams →
             </Link>
           </div>
         </div>
@@ -151,7 +148,7 @@ export default function F1Calendar() {
             <div style={{ fontSize: '0.7rem', color: 'var(--gold)', fontFamily: 'var(--font-heading)', letterSpacing: '2px', marginBottom: '8px' }}>
               CHAMPIONSHIP PARTNER
             </div>
-            <h3 style={{ fontSize: '1.25rem', margin: '0 0 12px 0' }}>FullRaces streaming</h3>
+            <h3 style={{ fontSize: '1.25rem', margin: '0 0 12px 0' }}>FOFA Live Streaming</h3>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
               Stream every practice, qualifying, and grand prix session live with zero delays.
             </p>
@@ -162,15 +159,13 @@ export default function F1Calendar() {
             >
               Launch Live Player <ExternalLink size={14} />
             </Link>
-            <a
-              href={getSportsurgeF1Url()}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/live-streams?sport=f1"
               className="ghost-button"
               style={{ marginTop: '10px', fontSize: '0.8rem', width: '100%', justifyContent: 'center', color: '#ff8a1c', borderColor: 'rgba(255,138,28,0.4)', textDecoration: 'none' }}
             >
-              <Zap size={14} /> Watch on Sportsurge <ExternalLink size={13} />
-            </a>
+              <MonitorPlay size={14} /> Watch F1 Live
+            </Link>
           </div>
         </div>
       </section>

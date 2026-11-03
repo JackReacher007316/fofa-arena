@@ -12,8 +12,8 @@ const BASE_URL = 'https://harborfreight22.com';
 // Sportsurge sections are also opened inside, with an external fallback (↗).
 const FOOTBALL_SECTIONS = [
   { id: 'live', label: 'Live Streams', icon: Tv, url: BASE_URL, color: '#ff314a', desc: 'Watch live football matches' },
-  { id: 'sportsurge', label: 'Sportsurge Football', icon: Zap, url: getSportsurgeFootballUrl(), color: '#ff8a1c', desc: 'All football matches on Sportsurge' },
-  { id: 'sportsurge-live', label: 'Sportsurge Live', icon: Radio, url: getSportsurgeHomeUrl(), color: '#ff8a1c', desc: 'Every live sport on Sportsurge right now' },
+  { id: 'sportsurge', label: 'Football Live Hub', icon: MonitorPlay, url: getSportsurgeFootballUrl(), color: '#ff8a1c', desc: 'All football matches live in one hub' },
+  { id: 'sportsurge-live', label: 'All Live Sports', icon: Radio, url: getSportsurgeHomeUrl(), color: '#ff8a1c', desc: 'Every live sport streaming right now' },
   { id: 'schedule', label: 'Schedule', icon: Calendar, url: `${BASE_URL}/lich-thi-dau`, color: '#20df7f', desc: 'Full match schedule' },
   { id: 'standings', label: 'Standings', icon: BarChart3, url: `${BASE_URL}/bang-xep-hang`, color: '#f2c94c', desc: 'League tables & rankings' },
   { id: 'results', label: 'Results', icon: ClipboardList, url: `${BASE_URL}/ket-qua-tran-dau`, color: '#4bb7ff', desc: 'Match results & scores' },
@@ -110,7 +110,7 @@ function InlineViewer({ url, title, onClose }) {
         <div className="ftb-stream-header">
           <div>
             <h3>{title}</h3>
-            <span className="ftb-stream-meta">{isSportsurge ? 'Powered by Sportsurge • v2.sportsurge.net' : 'Powered by ColaTV • harborfreight22.com'}</span>
+            <span className="ftb-stream-meta">{'Streaming live inside FOFA Arena'}</span>
           </div>
           <div className="ftb-stream-actions">
             <a href={url} target="_blank" rel="noopener noreferrer" title="Open in new tab (use if embed is blocked)" className="ftb-close-btn" style={{ textDecoration: 'none' }}><ExternalLink size={16} /></a>
@@ -221,15 +221,15 @@ export default function FootballLive() {
               Football <span>Schedule & Streaming</span>
             </h1>
             <p className="hero-copy">
-              {fromEspn ? `Latest fixtures LIVE from ESPN — Premier League, Champions League, La Liga, Serie A, Bundesliga & more${lastUpdated ? ` • updated ${lastUpdated.toLocaleTimeString()}` : ''} • auto-refreshes every minute` : 'Latest 2026/27 fixtures (ESPN offline — showing calendar snapshot)'} — with one-click live streaming powered by ColaTV & Sportsurge.
+              {fromEspn ? `Latest fixtures LIVE from ESPN — Premier League, Champions League, La Liga, Serie A, Bundesliga & more${lastUpdated ? ` • updated ${lastUpdated.toLocaleTimeString()}` : ''} • auto-refreshes every minute` : 'Latest 2026/27 fixtures (ESPN offline — showing calendar snapshot)'} — with one-click live streaming right here inside FOFA Arena.
             </p>
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
               <button className="ftb-stream-big-btn" onClick={openFullStream}>
                 <Play size={18} /> Open Live Stream Player
               </button>
-              <SportsurgeButton sport="football" label="Watch on Sportsurge" style={{ padding: '12px 20px', fontSize: '0.88rem' }} />
+              <SportsurgeButton sport="football" label="Watch Live" style={{ padding: '12px 20px', fontSize: '0.88rem' }} />
               <Link to="/sportsurge?sport=football" style={{ color: '#ff8a1c', fontWeight: 750, fontSize: '0.85rem' }}>
-                All Sportsurge links →
+                All live streams →
               </Link>
             </div>
           </div>
@@ -261,7 +261,7 @@ export default function FootballLive() {
           <div className="ftb-inline-header">
             <div className="ftb-inline-title-row">
               <h3>{viewerTitle}</h3>
-              <span className="ftb-inline-badge">{viewerUrl.includes('sportsurge') ? 'via Sportsurge' : 'harborfreight22.com'}</span>
+              <span className="ftb-inline-badge">{'FOFA LIVE'}</span>
             </div>
             <div style={{ display: 'flex', gap: '8px' }}>
               <a href={viewerUrl} target="_blank" rel="noopener noreferrer" title="Open in new tab" className="ftb-close-btn" style={{ textDecoration: 'none' }}><ExternalLink size={15} /></a>

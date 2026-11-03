@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Radio, RotateCcw, Flame, Trophy, MessageCircle, X, Send, Eye, ExternalLink, Zap } from 'lucide-react';
+import { Radio, RotateCcw, Flame, Trophy, MessageCircle, X, Send, Eye, ExternalLink, Zap, MonitorPlay } from 'lucide-react';
 import { io } from 'socket.io-client';
 import { Link } from 'react-router-dom';
 import { getSportsurgeUrlForSport } from '../data/sportsurgeLinks';
@@ -274,12 +274,12 @@ export default function WatchLive() {
             color: provider === 'partner' ? '#fff' : '#8f98a9',
           }}
         >
-          {sport === 'football' ? 'ColaTV' : sport === 'cricket' ? 'ePlayHD' : 'FullRaces'} (default)
+          Player 1 (default)
         </button>
         <button
           onClick={() => { if (sportsurgeAvailable) { setProvider('sportsurge'); setIframeKey(0); } }}
           disabled={!sportsurgeAvailable}
-          title={sportsurgeAvailable ? 'Watch this sport via Sportsurge' : 'Sportsurge links are added for football & F1'}
+          title={sportsurgeAvailable ? 'Watch this sport on Player 2' : 'Player 2 is available for football & F1'}
           style={{
             display: 'inline-flex', alignItems: 'center', gap: '6px',
             padding: '8px 16px', borderRadius: '999px', fontSize: '0.8rem', fontWeight: 750,
@@ -289,15 +289,15 @@ export default function WatchLive() {
             color: '#ff8a1c',
           }}
         >
-          <Zap size={14} /> Sportsurge {sport === 'f1' ? 'F1' : sport === 'football' ? 'Football' : ''}
+          <MonitorPlay size={14} /> Player 2 {sport === 'f1' ? 'F1' : sport === 'football' ? 'Football' : ''}
         </button>
         {provider === 'sportsurge' && (
           <a href={streamUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', color: '#ff8a1c', fontSize: '0.78rem', fontWeight: 700 }}>
-            Open Sportsurge in new tab <ExternalLink size={12} />
+            Open player in new tab <ExternalLink size={12} />
           </a>
         )}
         <Link to={`/sportsurge?sport=${sport === 'cricket' ? 'live' : sport}`} style={{ marginLeft: 'auto', color: '#ff8a1c', fontSize: '0.78rem', fontWeight: 700 }}>
-          All Sportsurge match links →
+          All live match streams →
         </Link>
       </div>
 
@@ -325,7 +325,7 @@ export default function WatchLive() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span className="status-pill is-live" style={{ padding: '3px 8px', fontSize: '0.75rem' }}>Live</span>
                 <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#ffffff' }}>
-                  {provider === 'sportsurge' ? 'via Sportsurge' : 'FOFA Official Feed'} • {sportTitle}
+                  {provider === 'sportsurge' ? 'via Player 2' : 'FOFA Official Feed'} • {sportTitle}
                 </span>
               </div>
               <button

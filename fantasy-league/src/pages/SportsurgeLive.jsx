@@ -54,20 +54,20 @@ export default function SportsurgeLive() {
 
       {/* Hero */}
       <div className="eyebrow" style={{ color: '#ff8a1c', borderColor: '#ff8a1c55', background: '#ff8a1c14' }}>
-        <Zap size={12} /> Sportsurge — Live Website Links
+        <MonitorPlay size={12} /> FOFA Arena — Live Streaming Hub
       </div>
       <h1 className="hero-title" style={{ fontSize: '2.6rem', margin: '10px 0' }}>
-        Sportsurge <span>Football &amp; F1 Live</span>
+        Live <span>Football &amp; F1 Streams</span>
       </h1>
       <p className="hero-copy" style={{ maxWidth: 760 }}>
-        Every football match and Formula 1 session, linked through Sportsurge.
-        Watch inside FOFA Arena or open Sportsurge in a new tab — if one mirror
-        is down, switch to another below.
+        Every football match and Formula 1 session, streaming inside FOFA Arena.
+        Pick a match below and watch right here — if one player is down,
+        switch to another player.
       </p>
 
       {/* Mirror selector */}
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center', margin: '18px 0' }}>
-        <span style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--muted)' }}>MIRROR:</span>
+        <span style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--muted)' }}>PLAYER:</span>
         {SPORTSURGE_MIRRORS.map((m) => (
           <button
             key={m.id}
@@ -84,7 +84,7 @@ export default function SportsurgeLive() {
         ))}
         <a href={hubUrl()} target="_blank" rel="noopener noreferrer"
           style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6, alignItems: 'center', color: activeColor, fontSize: '0.8rem', fontWeight: 750, textDecoration: 'none' }}>
-          Open Sportsurge <ExternalLink size={13} />
+          Open Player <ExternalLink size={13} />
         </a>
       </div>
 
@@ -105,7 +105,7 @@ export default function SportsurgeLive() {
           </button>
         ))}
         <button
-          onClick={() => openInside(hubUrl(), `Sportsurge — ${TABS.find((t) => t.id === tab)?.label}`)}
+          onClick={() => openInside(hubUrl(), TABS.find((t) => t.id === tab)?.label || 'Live Stream')}
           style={{
             marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: '8px',
             padding: '11px 20px', borderRadius: '999px', border: 'none', cursor: 'pointer',
@@ -123,7 +123,7 @@ export default function SportsurgeLive() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 18px', borderBottom: '1px solid rgba(255,255,255,0.08)', background: 'rgba(0,0,0,0.3)' }}>
             <strong style={{ fontSize: '0.9rem', display: 'flex', gap: 8, alignItems: 'center' }}>
               <MonitorPlay size={16} color={activeColor} /> {viewer.title}
-              <span style={{ fontSize: '0.65rem', padding: '2px 8px', borderRadius: 999, background: `${activeColor}1c`, color: activeColor, border: `1px solid ${activeColor}44` }}>via Sportsurge</span>
+              <span style={{ fontSize: '0.65rem', padding: '2px 8px', borderRadius: 999, background: `${activeColor}1c`, color: activeColor, border: `1px solid ${activeColor}44` }}>FOFA LIVE</span>
             </strong>
             <span style={{ display: 'flex', gap: 8 }}>
               <button onClick={() => setFrameKey((k) => k + 1)} title="Reload" style={iconBtn}><RotateCcw size={15} /></button>
@@ -139,7 +139,7 @@ export default function SportsurgeLive() {
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }} />
           </div>
           <p style={{ margin: 0, padding: '10px 18px', fontSize: '0.72rem', color: 'var(--muted)' }}>
-            If the player stays blank, Sportsurge is blocking embedding on this mirror — use the ↗ button above or switch mirror.
+            If the player stays blank, this player is blocking embedding right now — switch to another player above.
           </p>
         </div>
       )}
@@ -148,7 +148,7 @@ export default function SportsurgeLive() {
       {tab === 'football' && (
         <section>
           <h2 style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: '1.1rem' }}>
-            <Radio size={17} color="#20df7f" /> {footballFromEspn ? 'Latest Football Fixtures (ESPN) — Sportsurge Links' : 'Upcoming Football Matches — Sportsurge Links'}
+            <Radio size={17} color="#20df7f" /> {footballFromEspn ? 'Latest Football Fixtures (ESPN) — Watch Live' : 'Upcoming Football Matches — Watch Live'}
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {footballMatches.map((m) => {
@@ -169,13 +169,13 @@ export default function SportsurgeLive() {
                     </div>
                   </div>
                   <button onClick={() => openInside(url, title)} style={insideBtn('#20df7f')}><MonitorPlay size={13} /> Inside</button>
-                  <a href={url} target="_blank" rel="noopener noreferrer" style={surgeBtn('#20df7f')}><Zap size={13} /> Sportsurge <ExternalLink size={11} /></a>
+                  <button onClick={() => openInside(url, title)} style={surgeBtn('#20df7f')}><Play size={13} /> Watch</button>
                 </div>
               );
             })}
           </div>
           <Link to="/live/football" style={{ display: 'inline-flex', gap: 6, alignItems: 'center', marginTop: 16, color: '#20df7f', fontWeight: 750, fontSize: '0.85rem', textDecoration: 'none' }}>
-            <Trophy size={15} /> Full football schedule &amp; ColaTV player →
+            <Trophy size={15} /> Full football schedule &amp; live player →
           </Link>
         </section>
       )}
@@ -184,7 +184,7 @@ export default function SportsurgeLive() {
       {tab === 'f1' && (
         <section>
           <h2 style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: '1.1rem' }}>
-            <Flag size={17} color="#ff314a" /> F1 2026 Races — Sportsurge Links
+            <Flag size={17} color="#ff314a" /> F1 2026 Races — Watch Live
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(320px,1fr))', gap: 10 }}>
             {F1_2026_RACES.map((r) => {
@@ -197,7 +197,7 @@ export default function SportsurgeLive() {
                     <span style={{ fontSize: '0.72rem', color: 'var(--muted)', display: 'inline-flex', gap: 5, alignItems: 'center' }}><Calendar size={12} /> {r.dateRange}, 2026</span>
                     <div style={{ display: 'flex', gap: 8, marginTop: 10, flexWrap: 'wrap' }}>
                       <button onClick={() => openInside(url, r.gp)} style={insideBtn('#ff314a')}><MonitorPlay size={13} /> Inside</button>
-                      <a href={url} target="_blank" rel="noopener noreferrer" style={surgeBtn('#ff314a')}><Zap size={13} /> Sportsurge <ExternalLink size={11} /></a>
+                      <button onClick={() => openInside(url, r.gp)} style={surgeBtn('#ff314a')}><Play size={13} /> Watch</button>
                     </div>
                   </div>
                 </div>
@@ -214,16 +214,16 @@ export default function SportsurgeLive() {
       {tab === 'live' && (
         <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: 12 }}>
           {[
-            { label: 'Sportsurge Live — All Sports', desc: 'Every live event listed right now', url: getSportsurgeHomeUrl(mirror), color: '#ff8a1c' },
-            { label: 'Sportsurge Football', desc: 'All live football / soccer matches', url: getSportsurgeFootballUrl(null, mirror), color: '#20df7f' },
-            { label: 'Sportsurge F1', desc: 'Practice, qualifying, sprint & races', url: getSportsurgeF1Url(null, mirror), color: '#ff314a' },
+            { label: 'All Live Sports', desc: 'Every live event listed right now', url: getSportsurgeHomeUrl(mirror), color: '#ff8a1c' },
+            { label: 'Football Live', desc: 'All live football / soccer matches', url: getSportsurgeFootballUrl(null, mirror), color: '#20df7f' },
+            { label: 'Formula 1 Live', desc: 'Practice, qualifying, sprint & races', url: getSportsurgeF1Url(null, mirror), color: '#ff314a' },
           ].map((c) => (
             <div key={c.label} style={{ padding: 20, borderRadius: 16, border: `1px solid ${c.color}33`, background: `${c.color}0d` }}>
               <strong>{c.label}</strong>
               <p style={{ color: 'var(--muted)', fontSize: '0.8rem' }}>{c.desc}</p>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 <button onClick={() => openInside(c.url, c.label)} style={insideBtn(c.color)}><MonitorPlay size={13} /> Watch Inside</button>
-                <a href={c.url} target="_blank" rel="noopener noreferrer" style={surgeBtn(c.color)}><Zap size={13} /> Sportsurge <ExternalLink size={11} /></a>
+                <button onClick={() => openInside(c.url, c.label)} style={surgeBtn(c.color)}><Play size={13} /> Watch</button>
               </div>
             </div>
           ))}
@@ -231,8 +231,8 @@ export default function SportsurgeLive() {
       )}
 
       <p style={{ marginTop: 28, fontSize: '0.72rem', color: 'var(--muted)', lineHeight: 1.6 }}>
-        Sportsurge is a third-party link aggregator and does not host streams itself; links and mirrors can
-        change or go offline. If a link is dead, try another mirror above — and prefer official broadcasters
+        Streams come from third-party embedded players and link aggregators that do not host content
+        themselves; players can change or go offline. If a player is dead, try another player above — and prefer official broadcasters
         (e.g. F1 TV, your league&apos;s broadcaster) where available.
       </p>
     </div>

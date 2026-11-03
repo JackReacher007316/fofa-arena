@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Calendar, MapPin, Trophy, Radio, Search, Eye, Award, Shield, ExternalLink, Zap } from 'lucide-react';
-import { getSportsurgeFootballUrl } from '../data/sportsurgeLinks';
+import { Calendar, MapPin, Trophy, Radio, Search, Eye, Award, Shield, ExternalLink, Zap, MonitorPlay } from 'lucide-react';
 import { MATCHES as LATEST_MATCHES, getLeagueById } from '../data/footballSchedule';
 import { SportsurgeButton } from '../components/SportsurgeLinks';
 import { useFootballFixtures, espnToMatch } from '../components/useEspnFixtures';
@@ -117,17 +116,15 @@ export default function FootballCalendar() {
             >
               <Radio size={16} /> Watch Live Stream
             </Link>
-            <a
-              href={getSportsurgeFootballUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/live-streams?sport=football"
               className="ghost-button"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '12px 20px', textDecoration: 'none', color: '#ff8a1c', borderColor: 'rgba(255,138,28,0.4)', fontWeight: 'bold', fontSize: '0.85rem' }}
             >
-              <Zap size={16} /> Sportsurge Football <ExternalLink size={13} />
-            </a>
-            <Link to="/sportsurge?sport=football" style={{ alignSelf: 'center', color: '#ff8a1c', fontWeight: 700, fontSize: '0.82rem' }}>
-              All Sportsurge links →
+              <MonitorPlay size={16} /> Football Live Streams
+            </Link>
+            <Link to="/live-streams?sport=football" style={{ alignSelf: 'center', color: '#ff8a1c', fontWeight: 700, fontSize: '0.82rem' }}>
+              All live streams →
             </Link>
           </div>
         </div>
@@ -137,7 +134,7 @@ export default function FootballCalendar() {
             <div style={{ fontSize: '0.7rem', color: 'var(--gold)', fontFamily: 'var(--font-heading)', letterSpacing: '2px', marginBottom: '8px' }}>
               CHAMPIONSHIP PARTNER
             </div>
-            <h3 style={{ fontSize: '1.25rem', margin: '0 0 12px 0' }}>colatvia.live Broadcast</h3>
+            <h3 style={{ fontSize: '1.25rem', margin: '0 0 12px 0' }}>FOFA Live Broadcast</h3>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
               Enjoy high-definition streams of every tackle, goal, and tactical masterclass live on our built-in player.
             </p>
@@ -148,15 +145,13 @@ export default function FootballCalendar() {
             >
               Launch Live Player
             </Link>
-            <a
-              href={getSportsurgeFootballUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/live-streams?sport=football"
               className="ghost-button"
               style={{ marginTop: '10px', fontSize: '0.8rem', width: '100%', justifyContent: 'center', color: '#ff8a1c', borderColor: 'rgba(255,138,28,0.4)', textDecoration: 'none' }}
             >
-              <Zap size={14} /> Watch on Sportsurge <ExternalLink size={13} />
-            </a>
+              <MonitorPlay size={14} /> Watch Live
+            </Link>
           </div>
         </div>
       </section>

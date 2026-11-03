@@ -17,9 +17,9 @@
 export const SPORTSURGE_BASE = 'https://v2.sportsurge.net';
 
 export const SPORTSURGE_MIRRORS = [
-  { id: 'v2', label: 'Sportsurge V2 — Primary', base: 'https://v2.sportsurge.net' },
-  { id: 'club', label: 'Sportsurge Club', base: 'https://sportsurge.club' },
-  { id: 'uno', label: 'Sportsurge V3 (uno)', base: 'https://www.sportsurge.uno' },
+  { id: 'v2', label: 'Player 1 — Primary', base: 'https://v2.sportsurge.net' },
+  { id: 'club', label: 'Player 2', base: 'https://sportsurge.club' },
+  { id: 'uno', label: 'Player 3', base: 'https://www.sportsurge.uno' },
 ];
 
 const cleanBase = (base = SPORTSURGE_BASE) => String(base).replace(/\/+$/, '');
@@ -63,7 +63,7 @@ export const SPORTSURGE_QUICK_LINKS = [
   {
     id: 'live',
     sport: 'all',
-    label: 'Sportsurge Live — All Sports',
+    label: 'All Live Sports',
     desc: 'Every live match & race listed right now',
     color: '#ff8a1c',
     getUrl: (base) => getSportsurgeHomeUrl(base),
@@ -71,7 +71,7 @@ export const SPORTSURGE_QUICK_LINKS = [
   {
     id: 'football',
     sport: 'football',
-    label: 'Sportsurge Football',
+    label: 'Football Live',
     desc: 'Premier League, La Liga, Serie A, Bundesliga, Champions League & World Cup',
     color: '#20df7f',
     getUrl: (base) => getSportsurgeFootballUrl(null, base),
@@ -79,7 +79,7 @@ export const SPORTSURGE_QUICK_LINKS = [
   {
     id: 'f1',
     sport: 'f1',
-    label: 'Sportsurge F1',
+    label: 'Formula 1 Live',
     desc: 'Every FP1/FP2/FP3, qualifying, sprint and Grand Prix session',
     color: '#ff314a',
     getUrl: (base) => getSportsurgeF1Url(null, base),

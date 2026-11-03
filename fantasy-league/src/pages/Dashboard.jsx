@@ -494,9 +494,9 @@ export default function Dashboard({ activeSport, setActiveSport, setActiveMatch 
 
       {/* Sportsurge — football & F1 live links */}
       <div className="section-head" style={{ marginBottom: '10px' }}>
-        <h2 style={{ fontSize: '1.15rem' }}>⚡ Sportsurge Live Links</h2>
+        <h2 style={{ fontSize: '1.15rem' }}>🔴 Live Streams</h2>
         <button className="ghost-button" type="button" onClick={() => navigate('/sportsurge')}>
-          Football &amp; F1 on Sportsurge <ArrowRight size={16} />
+          Football &amp; F1 Live Streams <ArrowRight size={16} />
         </button>
       </div>
       <SportsurgeLinks style={{ marginBottom: '28px' }} />
