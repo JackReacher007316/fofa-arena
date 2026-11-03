@@ -6,6 +6,21 @@
        turquoise #00C9B7, colour-spectrum stripe
    ═══════════════════════════════════════════════════════════ */
 
+/* ── Mona Sans (GitHub's typeface, OFL-1.1) — self-hosted woff2 ── */
+@font-face { font-family: "Mona Sans"; src: url("./assets/fonts/mona-sans-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Mona Sans"; src: url("./assets/fonts/mona-sans-regular-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Mona Sans"; src: url("./assets/fonts/mona-sans-medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Mona Sans"; src: url("./assets/fonts/mona-sans-semi-bold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Mona Sans"; src: url("./assets/fonts/mona-sans-bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Mona Sans"; src: url("./assets/fonts/mona-sans-bold-italic.woff2") format("woff2"); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Mona Sans"; src: url("./assets/fonts/mona-sans-extra-bold.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Mona Sans"; src: url("./assets/fonts/mona-sans-black.woff2") format("woff2"); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Mona Sans Wide"; src: url("./assets/fonts/mona-sans-bold-wide.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Mona Sans Wide"; src: url("./assets/fonts/mona-sans-extra-bold-wide.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Mona Sans Wide"; src: url("./assets/fonts/mona-sans-black-wide.woff2") format("woff2"); font-weight: 900; font-style: normal; font-display: swap; }
+
+
+
 :root {
   /* ── F1 carbon & La Liga navy surfaces ── */
   --bg: #0a0a10;
@@ -73,9 +88,10 @@
   --shadow-red: 0 8px 24px rgba(225, 6, 0, 0.35);
 
   /* ── Typography (Clean modern sans-serif) ────────────────── */
-  --font: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-racing: "Titillium Web", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-timing: "Orbitron", "Titillium Web", ui-monospace, monospace;
+  --font: "Mona Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-racing: "Mona Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Mona Sans Wide", "Mona Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-timing: "Orbitron", "Mona Sans", ui-monospace, monospace;
   --font-body: var(--font);
   --font-heading: var(--font);
   --font-main: var(--font);
@@ -2177,3 +2193,58 @@ h1, h2, h3,
 .ai-pick { display: flex; align-items: center; gap: 7px; margin-top: 11px; font-size: 0.8rem; }
 .ai-pick b { color: #fff; }
 .ai-reason { margin: 6px 0 0; font-size: 0.74rem; line-height: 1.5; color: var(--muted); }
+
+/* ═══════════════════════════════════════════════════════════
+   MONA SANS DESIGN LAYER (GitHub type system)
+   Body/UI: Mona Sans • Display: Mona Sans Wide • Scores: Orbitron
+   ═══════════════════════════════════════════════════════════ */
+body {
+  font-family: var(--font);
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
+}
+
+/* Display headings — Mona Sans Wide, GitHub-style tight tracking,
+   sentence case (no more all-caps Titillium italic) */
+h1, h2, .hero-title, .netflix-hero-title, .brand-lockup, .stat-value {
+  font-family: var(--font-display);
+  font-style: normal;
+  letter-spacing: -0.015em;
+  text-transform: none;
+}
+h3, .section-head h2, .nfx-rail-head h2, .sidebar-live-head {
+  font-family: var(--font-racing);
+  font-style: normal;
+  letter-spacing: -0.01em;
+}
+
+/* Nav, tabs, buttons — clean Mona Sans semibold (GitHub UI feel) */
+.nav-link, .sport-tab, .btn-netflix-play, .btn-netflix-info, .ghost-button,
+.sony-watch-btn, .sidebar-live-all, .submit-btn {
+  font-family: var(--font);
+  font-style: normal;
+  letter-spacing: 0.01em;
+}
+.btn-netflix-play, .submit-btn { font-weight: 800; }
+.nav-link { font-weight: 600; text-transform: none; letter-spacing: 0.01em; font-size: 0.92rem; }
+.nav-link span { font-size: 0.92rem; }
+
+/* Small caps labels keep the sporty kick */
+.eyebrow, .sony-live-badge, .nfx-card-badge, .sport-pill, .status-pill,
+.sidebar-live-sport, .sony-card-comp, .stat-label, .nfx-rail-hint {
+  font-family: var(--font);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Brand + chat keep a touch of pace in Mona Sans italic */
+.brand-title, .f1-laliga-strip-track, .ai-pick, .sony-score-btn {
+  font-family: var(--font);
+}
+.chatbot-panel h3, .chat-header h3 { font-family: var(--font-display); letter-spacing: -0.01em; }
+
+/* Numbers in tables/scores read cleanly with tabular figures */
+.leaderboard-table td, .ai-prob-labels, .sidebar-live-score {
+  font-variant-numeric: tabular-nums;
+}
