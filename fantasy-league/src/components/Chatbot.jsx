@@ -104,7 +104,7 @@ const Chatbot = () => {
             <div style={{ flex: 1 }}>
               <h3 style={{ margin: 0, fontSize: '1rem', color: '#fff', fontFamily: 'var(--font-heading)', letterSpacing: '1px' }}>Carlos</h3>
               <span style={{ fontSize: '0.7rem', color: '#00c0f9', display: 'flex', alignItems: 'center', gap: '5px', fontFamily: 'var(--font-heading)', letterSpacing: '1px' }}>
-                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#00c0f9', boxShadow: '0 0 8px #00c0f9' }}></span> AI COMPANION
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#00c0f9', boxShadow: '0 0 8px #00c0f9' }}></span> AI COMPANION • GEMINI
               </span>
             </div>
             <Sparkles size={18} color="#f3c623" style={{ opacity: 0.6 }} />
