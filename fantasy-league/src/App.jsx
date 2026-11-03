@@ -24,7 +24,7 @@ import {
   Clapperboard,
   MonitorPlay
 } from 'lucide-react';
-import Background3D from './components/Background3D';
+const Background3D = React.lazy(() => import('./components/Background3D'));
 import Chatbot from './components/Chatbot';
 import WelcomeAnimation from './components/WelcomeAnimation';
 import SidebarLive from './components/SidebarLive';
@@ -319,7 +319,9 @@ export default function App() {
 
   return (
     <Router basename={basename}>
-      <Background3D disabled={disable3D} activeSport={activeSport} />
+      <Suspense fallback={null}>
+        <Background3D disabled={disable3D} activeSport={activeSport} />
+      </Suspense>
       <WelcomeAnimation />
       <Suspense fallback={<PageLoader />}>
         <Routes>

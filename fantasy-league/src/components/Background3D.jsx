@@ -28,7 +28,7 @@ function FloatingMesh({ position, color, size, speed }) {
 
   return (
     <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[size, 32, 32]} />
+      <sphereGeometry args={[size, 20, 20]} />
       <meshBasicMaterial
         color={color}
         transparent
@@ -64,6 +64,13 @@ function CameraDrift() {
 }
 
 export default function Background3D({ disabled, activeSport = 'all' }) {
+  // Lite mode: skip the WebGL canvas entirely on mobile, reduced-motion
+  // or low-core devices — the CSS wallpaper layers still give the look.
+  const [lite] = useState(() =>
+    typeof window !== 'undefined' &&
+    (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ||
+      window.innerWidth < 768 ||
+      (navigator.hardwareConcurrency || 8) <= 4));
   const [activeSlide, setActiveSlide] = useState(0); // 0 = F1, 1 = Cricket, 2 = Football
 
   // Dynamic slideshow when activeSport is 'all'
@@ -147,7 +154,7 @@ export default function Background3D({ disabled, activeSport = 'all' }) {
       />
       
       {/* ── 3D CANVAS LAYER ── */}
-      {!disabled && (
+      {!disabled && !lite && (
         <div 
           className="arena-canvas"
           style={{
@@ -167,8 +174,8 @@ export default function Background3D({ disabled, activeSport = 'all' }) {
               <AmbientGlows />
               
               {/* Subtle cinematic space dust/particles */}
-              <Sparkles count={50} scale={[25, 15, 20]} size={1.2} speed={0.06} color="#ff4b44" opacity={0.25} />
-              <Sparkles count={25} scale={[25, 15, 20]} size={1.5} speed={0.10} color="#f3c623" opacity={0.15} />
+              <Sparkles count={28} scale={[25, 15, 20]} size={1.2} speed={0.06} color="#ff4b44" opacity={0.25} />
+              <Sparkles count={14} scale={[25, 15, 20]} size={1.5} speed={0.10} color="#f3c623" opacity={0.15} />
               
               {/* Light setup */}
               <ambientLight intensity={0.2} />
