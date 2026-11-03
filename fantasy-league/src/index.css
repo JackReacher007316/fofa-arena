@@ -2141,3 +2141,39 @@ h1, h2, h3,
   font-size: 0.72rem; font-weight: 750; padding: 7px 12px; border-radius: 4px; text-decoration: none;
 }
 .sony-score-btn:hover { border-color: var(--laliga-coral, #ff4b44); }
+
+/* ── Simple intro (fast, light) ── */
+.simple-intro-rise { animation: introRise 0.55s cubic-bezier(0.22, 0.9, 0.3, 1) both; }
+@keyframes introRise { from { opacity: 0; transform: translateY(14px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.simple-intro-bar {
+  width: 180px; height: 4px; border-radius: 99px; overflow: hidden; position: relative;
+  background: rgba(255, 255, 255, 0.10);
+}
+.simple-intro-bar::after {
+  content: ""; position: absolute; inset: 0; border-radius: 99px;
+  background: linear-gradient(90deg, var(--f1-red, #e10600), var(--laliga-coral, #ff4b44), var(--laliga-yellow, #ffcc00));
+  transform-origin: left; animation: introBar 1.05s cubic-bezier(0.3, 0.7, 0.3, 1) both;
+}
+@keyframes introBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .simple-intro-rise, .simple-intro-bar::after { animation: none; }
+}
+
+/* ── Carlos AI Insights cards ── */
+.ai-insights-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px; }
+.ai-card {
+  background: linear-gradient(160deg, #181822, #0f0f16 75%, rgba(11, 30, 58, 0.45));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-left: 3px solid var(--laliga-violet, #7c5cff);
+  border-radius: 10px; padding: 14px 16px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.ai-card:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,0.5), 0 0 16px -6px rgba(124,92,255,0.55); }
+.ai-card-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+.ai-card-title { display: block; font-size: 0.98rem; margin-bottom: 10px; }
+.ai-prob-bar { display: flex; height: 8px; border-radius: 99px; overflow: hidden; background: rgba(255,255,255,0.07); }
+.ai-prob-bar span { display: block; height: 100%; }
+.ai-prob-labels { display: flex; justify-content: space-between; gap: 6px; margin-top: 6px; font-size: 0.64rem; font-weight: 700; color: var(--muted); }
+.ai-pick { display: flex; align-items: center; gap: 7px; margin-top: 11px; font-size: 0.8rem; }
+.ai-pick b { color: #fff; }
+.ai-reason { margin: 6px 0 0; font-size: 0.74rem; line-height: 1.5; color: var(--muted); }

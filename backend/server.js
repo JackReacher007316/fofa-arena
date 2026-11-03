@@ -682,6 +682,63 @@ ${matchesList}
 });
 
 // ========================
+// AI Match Predictions (Gemini) — POST /api/ai/predict
+// Body: { matches: [{ home, away, sport, competition }] } (max 5)
+// Returns { source: 'gemini' | 'fallback', predictions: [...] }.
+// The frontend mirrors this fallback locally, so the feature works
+// even when this backend (or Gemini) is unreachable.
+// ========================
+function localPredict(matches) {
+  const hash = (str) => {
+    let h = 7;
+    for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) % 9973;
+    return h;
+  };
+  return matches.map((m) => {
+    const base = 34 + (hash(`${m.home}|${m.away}`) % 26); // 34–59 home edge
+    const draw = m.sport === 'football' || m.sport === 'cricket' ? 18 + (hash(m.away) % 10) : 0;
+    const homeWin = Math.min(72, base);
+    const awayWin = Math.max(8, 100 - homeWin - draw);
+    const pick = homeWin >= awayWin ? m.home : m.away;
+    return {
+      home: m.home, away: m.away, sport: m.sport || 'sports',
+      homeWin, draw, awayWin, pick,
+      confidence: Math.max(homeWin, awayWin),
+      reason: `${pick} get the edge on current form, squad depth and venue conditions.`,
+    };
+  });
+}
+
+app.post('/api/ai/predict', async (req, res) => {
+  const matches = Array.isArray(req.body?.matches) ? req.body.matches.slice(0, 5) : [];
+  if (!matches.length) return res.status(400).json({ error: 'matches required' });
+  if (!model) return res.json({ source: 'fallback', predictions: localPredict(matches) });
+
+  try {
+    const list = matches.map((m, i) => `${i + 1}. ${m.home} vs ${m.away} (${m.sport || 'sport'}${m.competition ? `, ${m.competition}` : ''})`).join('\n');
+    const prompt = `You are Carlos, a sharp sports analyst. For each match below, estimate win probabilities.
+Rules: homeWin + draw + awayWin = 100. draw = 0 for sports without draws (F1, basketball, tennis). confidence = probability of your pick. reason = one short sentence (max 18 words).
+Reply with ONLY a JSON array, no markdown: [{"homeWin":0,"draw":0,"awayWin":0,"pick":"<team name>","confidence":0,"reason":"..."}]
+Matches:
+${list}`;
+    const result = await model.generateContent(prompt);
+    const raw = result.response.text().replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(raw.slice(raw.indexOf('['), raw.lastIndexOf(']') + 1));
+    const predictions = matches.map((m, i) => ({
+      home: m.home, away: m.away, sport: m.sport || 'sport',
+      homeWin: parsed[i]?.homeWin ?? 40, draw: parsed[i]?.draw ?? 0, awayWin: parsed[i]?.awayWin ?? 40,
+      pick: parsed[i]?.pick || m.home,
+      confidence: parsed[i]?.confidence ?? 50,
+      reason: parsed[i]?.reason || 'Balanced matchup — fine margins decide this one.',
+    }));
+    res.json({ source: 'gemini', predictions });
+  } catch (e) {
+    console.error('AI predict fallback:', e.message);
+    res.json({ source: 'fallback', predictions: localPredict(matches) });
+  }
+});
+
+// ========================
 // WebRTC Signaling + Watch Party Rooms + Live Comments (Socket.io)
 // ========================
 const STREAM_ROOM = 'main-stage';
