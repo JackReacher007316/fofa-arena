@@ -1999,3 +1999,145 @@ h1, h2, h3,
 .f1-laliga-strip-track b { color: var(--laliga-yellow); }
 @keyframes f1StripScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .f1-laliga-strip-track { animation: none; } }
+
+/* ═══════════════════════════════════════════════════════════
+   SONY LIV × NETFLIX LAYER (live rail + poster rails + sidebar)
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Sidebar live scores (reveals when the icon dock expands) ── */
+.sidebar-live {
+  width: 100%;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+  border-top: 1px solid transparent;
+}
+.sidebar:hover .sidebar-live {
+  max-height: 290px;
+  opacity: 1;
+  overflow-y: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 10px;
+}
+.sidebar-live-head {
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--font-racing); font-weight: 900; font-style: italic;
+  font-size: 0.66rem; letter-spacing: 1.6px; color: #fff;
+  padding: 0 8px 7px;
+}
+.sidebar-live-dot, .sony-live-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto;
+  background: var(--f1-red, #e10600);
+  box-shadow: 0 0 0 0 rgba(225, 6, 0, 0.55);
+  animation: pulse 1.5s infinite;
+}
+.sidebar-live-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1px 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.sidebar-live-row:hover { background: rgba(255, 75, 68, 0.10); }
+.sidebar-live-sport { grid-column: 1 / -1; font-size: 0.55rem; font-weight: 800; letter-spacing: 1.2px; color: var(--laliga-coral, #ff4b44); }
+.sidebar-live-title { font-size: 0.72rem; font-weight: 650; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sidebar-live-score { font-family: var(--font-timing); font-size: 0.66rem; font-weight: 700; color: var(--laliga-yellow, #ffcc00); white-space: nowrap; }
+.sidebar-live-empty { font-size: 0.7rem; color: var(--muted); padding: 2px 8px 6px; }
+.sidebar-live-all { display: block; padding: 7px 8px 2px; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.6px; color: var(--laliga-coral, #ff4b44); text-decoration: none; text-transform: uppercase; font-family: var(--font-racing); font-style: italic; }
+
+/* ── Netflix rails ── */
+.nfx-rail-section { margin: 26px 0 6px; }
+.nfx-rail-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.nfx-rail-head h2 { display: inline-flex; align-items: center; gap: 10px; margin: 0; font-size: 1.18rem; }
+.nfx-rail-head h2::before {
+  content: ""; width: 5px; height: 20px;
+  background: linear-gradient(180deg, var(--f1-red, #e10600), var(--laliga-coral, #ff4b44));
+  transform: skewX(-18deg);
+}
+.nfx-rail-hint { display: inline-flex; align-items: center; gap: 2px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); }
+.nfx-rail-track {
+  display: flex; gap: 12px;
+  overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  padding: 6px 2px 14px;
+  scrollbar-width: none;
+}
+.nfx-rail-track::-webkit-scrollbar { display: none; }
+
+.nfx-card {
+  scroll-snap-align: start;
+  flex: 0 0 248px;
+  text-decoration: none; color: inherit;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative; z-index: 1;
+}
+.nfx-card:hover { transform: scale(1.055) translateY(-3px); z-index: 5; }
+.nfx-card-media {
+  position: relative; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.09); background: #101019;
+}
+.nfx-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.45s ease; }
+.nfx-card:hover .nfx-card-media img { transform: scale(1.08); }
+.nfx-card-shade { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(4, 4, 8, 0.88)); }
+.nfx-card-badge {
+  position: absolute; top: 8px; left: 8px;
+  font-family: var(--font-racing); font-weight: 900; font-style: italic;
+  font-size: 0.6rem; letter-spacing: 1.2px; color: #fff;
+  padding: 3px 8px; border-radius: 3px;
+  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+}
+.nfx-card-play {
+  position: absolute; right: 10px; bottom: 10px;
+  width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255, 255, 255, 0.94); color: #000;
+  opacity: 0; transform: translateY(6px); transition: all 0.25s ease;
+}
+.nfx-card:hover .nfx-card-play { opacity: 1; transform: translateY(0); }
+.nfx-card-body { padding: 8px 2px 0; display: flex; flex-direction: column; gap: 1px; }
+.nfx-card-body strong { font-size: 0.85rem; font-weight: 750; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nfx-card-body span { font-size: 0.7rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ── Sony LIV live-now match-centre cards ── */
+.sony-card {
+  scroll-snap-align: start;
+  flex: 0 0 318px;
+  max-width: 86vw;
+  background: linear-gradient(165deg, #17171f 0%, #0e0e15 75%, rgba(11, 30, 58, 0.5));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-top: 3px solid var(--f1-red, #e10600);
+  border-radius: 10px;
+  padding: 14px 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.sony-card:hover { transform: translateY(-3px); box-shadow: 0 16px 30px rgba(0, 0, 0, 0.55), 0 0 18px -6px rgba(225, 6, 0, 0.5); }
+.sony-card-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; }
+.sony-card-comp { font-size: 0.62rem; font-weight: 800; letter-spacing: 1.1px; text-transform: uppercase; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sony-live-badge {
+  font-family: var(--font-racing); font-weight: 900; font-style: italic;
+  font-size: 0.62rem; letter-spacing: 1px; color: #fff;
+  background: var(--f1-red, #e10600); padding: 3px 8px; border-radius: 3px;
+  box-shadow: 0 0 12px rgba(225, 6, 0, 0.5); white-space: nowrap;
+}
+.sony-up-badge { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.8px; color: var(--laliga-yellow, #ffcc00); border: 1px solid rgba(255, 204, 0, 0.4); padding: 2px 7px; border-radius: 999px; white-space: nowrap; }
+.sony-card-teams { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; }
+.sony-team { font-weight: 800; font-size: 0.94rem; line-height: 1.25; }
+.sony-score { font-family: var(--font-timing); font-weight: 800; font-size: 1.02rem; color: #fff; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.10); padding: 4px 10px; border-radius: 6px; white-space: nowrap; }
+.sony-card-meta { margin-top: 9px; font-size: 0.68rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sony-card-actions { display: flex; gap: 8px; margin-top: 12px; }
+.sony-watch-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #fff; color: #000 !important;
+  font-family: var(--font-racing); font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: 0.6px;
+  font-size: 0.72rem; padding: 7px 14px; border-radius: 4px; text-decoration: none;
+  clip-path: polygon(7px 0, 100% 0, calc(100% - 7px) 100%, 0 100%);
+}
+.sony-watch-btn:hover { background: var(--laliga-yellow, #ffcc00); }
+.sony-score-btn {
+  display: inline-flex; align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.22); color: var(--text) !important;
+  font-size: 0.72rem; font-weight: 750; padding: 7px 12px; border-radius: 4px; text-decoration: none;
+}
+.sony-score-btn:hover { border-color: var(--laliga-coral, #ff4b44); }

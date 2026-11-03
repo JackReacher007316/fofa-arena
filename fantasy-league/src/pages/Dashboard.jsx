@@ -13,6 +13,7 @@ import {
   Clapperboard
 } from 'lucide-react';
 import SportTabs from '../components/SportTabs';
+import { PosterRail, LiveNowRail } from '../components/NetflixRails';
 import { fetchAllScores, getScoreSummary, getSportById, SPORT_CATALOG } from '../data/liveSports';
 
 const demoMatches = [
@@ -435,6 +436,9 @@ export default function Dashboard({ activeSport, setActiveSport, setActiveMatch 
         </div>
       </div>
 
+      {/* Sony LIV-style Live Now rail (ESPN scores, auto-refresh) */}
+      <LiveNowRail scores={scores} />
+
       {/* Prime Video style Channel Brand Tiles */}
       <section className="prime-brand-tiles">
         <div className="prime-brand-tile" onClick={() => navigate('/watch-live')} style={{ '--sport-glow-color': 'var(--hotstar-gold)' }}>
@@ -474,6 +478,19 @@ export default function Dashboard({ activeSport, setActiveSport, setActiveMatch 
           </div>
         </div>
       </section>
+
+      {/* Netflix-style browse rail */}
+      <PosterRail
+        title="Browse the Arena"
+        items={[
+          { key: 'f1', title: 'Formula 1 — Race Control', subtitle: 'Live timing, telemetry & sessions', badge: 'F1', badgeColor: '#e10600', path: '/live', image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&q=70&w=640' },
+          { key: 'football', title: 'Football Live', subtitle: 'Premier League, La Liga, UCL & more', badge: 'LIVE TV', badgeColor: '#ff4b44', path: '/live/football', image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=70&w=640' },
+          { key: 'cricket', title: 'Cricket Live', subtitle: 'International & league cricket', badge: 'CRICKET', badgeColor: '#b8860b', path: '/watch-live?sport=cricket', image: 'https://images.unsplash.com/photo-1531415080290-bc98529c113a?auto=format&fit=crop&q=70&w=640' },
+          { key: 'streams', title: 'Live Streams', subtitle: 'Every live event in one hub', badge: 'STREAMS', badgeColor: '#7c5cff', path: '/watch-live', image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=70&w=640' },
+          { key: 'movies', title: 'Movies & Shows', subtitle: 'FOFA Cinema — watch free', badge: 'CINEMA', badgeColor: '#ff4b44', path: '/movies', image: 'https://images.unsplash.com/photo-1489599849927-193c143a4455?auto=format&fit=crop&q=70&w=640' },
+          { key: 'party', title: 'Watch Party', subtitle: 'Co-watch with friends live', badge: 'SOCIAL', badgeColor: '#00c9b7', path: '/watch-party', image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=70&w=640' },
+        ]}
+      />
 
       {/* Stats Quick strip */}
       <div className="stat-grid">
