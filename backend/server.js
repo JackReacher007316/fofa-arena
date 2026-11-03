@@ -496,6 +496,9 @@ try {
   if (process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== 'YOUR_API_KEY_HERE') {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    console.log("✅ Gemini AI (Carlos) initialised — /api/chat is live.");
+  } else {
+    console.log("ℹ️  GEMINI_API_KEY not set — Carlos will run in offline fallback mode.");
   }
 } catch (e) {
   console.log("Failed to initialize Gemini AI. Check API key.");
@@ -540,6 +543,8 @@ const CARLOS_SYSTEM_PROMPT = `You are **Carlos**, the official AI companion for 
 - **Watch Party**: Room-based streaming with OBS/Screen Share and in-room chat (up to 12 members).
 - **Watch Live**: Embedded live streams for F1, Cricket, Football at '/watch-live'. Always direct users here — never to external sites.
 - **Calendars**: F1 ('/f1-calendar'), Cricket ('/cricket-calendar'), Football ('/football-calendar').
+- **Movies**: FOFA Cinema at '/movies' — movies & shows embedded inside the site.
+- **Live Scores**: Live score panels sit in the sidebar (hover to expand) and on the Home 'Live Now' rail; full scorecards at '/live'. Home also has Netflix-style browse rails.
 - **Leaderboard**: Global fantasy rankings at '/leaderboard'.
 
 ### Scoring Rules
