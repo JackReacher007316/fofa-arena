@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import SportTabs from '../components/SportTabs';
 import { PosterRail, LiveNowRail } from '../components/NetflixRails';
+import AiInsights from '../components/AiInsights';
 import { fetchAllScores, getScoreSummary, getSportById, SPORT_CATALOG } from '../data/liveSports';
 
 const demoMatches = [
@@ -438,6 +439,9 @@ export default function Dashboard({ activeSport, setActiveSport, setActiveMatch 
 
       {/* Sony LIV-style Live Now rail (ESPN scores, auto-refresh) */}
       <LiveNowRail scores={scores} />
+
+      {/* Carlos AI predictions (Gemini) */}
+      <AiInsights scores={scores} />
 
       {/* Prime Video style Channel Brand Tiles */}
       <section className="prime-brand-tiles">
