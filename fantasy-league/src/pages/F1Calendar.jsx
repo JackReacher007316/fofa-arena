@@ -123,7 +123,7 @@ export default function F1Calendar() {
             <div style={{ fontSize: '0.7rem', color: 'var(--gold)', fontFamily: 'var(--font-heading)', letterSpacing: '2px', marginBottom: '8px' }}>
               CHAMPIONSHIP PARTNER
             </div>
-            <h3 style={{ fontSize: '1.25rem', margin: '0 0 12px 0' }}>FullRaces streaming</h3>
+            <h3 style={{ fontSize: '1.25rem', margin: '0 0 12px 0' }}>FOFA Live Streaming</h3>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
               Stream every practice, qualifying, and grand prix session live with zero delays.
             </p>

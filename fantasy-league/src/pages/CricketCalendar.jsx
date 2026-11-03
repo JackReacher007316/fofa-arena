@@ -121,7 +121,7 @@ export default function CricketCalendar() {
             <div style={{ fontSize: '0.7rem', color: 'var(--gold)', fontFamily: 'var(--font-heading)', letterSpacing: '2px', marginBottom: '8px' }}>
               CHAMPIONSHIP PARTNER
             </div>
-            <h3 style={{ fontSize: '1.25rem', margin: '0 0 12px 0' }}>ePlayHD Live Streaming</h3>
+            <h3 style={{ fontSize: '1.25rem', margin: '0 0 12px 0' }}>FOFA Live Streaming</h3>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
               Stream every boundary, wicket, and post-match ceremony live in ultra low latency.
             </p>

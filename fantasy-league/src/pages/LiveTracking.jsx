@@ -180,7 +180,7 @@ export default function LiveTracking({ activeSport, setActiveSport }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <Tv size={20} color="#ff4b44" style={{ minWidth: '20px' }} />
           <span style={{ fontSize: '0.9rem', color: '#ffffff' }}>
-            <strong>Live Multicast:</strong> Watch F1 (fullraces.com), Cricket (eplayhd.com), and Football (colatvia.live) embedded streams directly on this platform.
+            <strong>Live Multicast:</strong> Watch F1, Cricket and Football embedded streams directly on this platform — no external sites, everything plays inside FOFA Arena.
           </span>
         </div>
         <Link
