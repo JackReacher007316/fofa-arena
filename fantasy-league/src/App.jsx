@@ -27,6 +27,7 @@ import {
 import Background3D from './components/Background3D';
 import Chatbot from './components/Chatbot';
 import WelcomeAnimation from './components/WelcomeAnimation';
+import SidebarLive from './components/SidebarLive';
 import MercedesStarLogo from './components/MercedesStarLogo';
 
 const Dashboard = React.lazy(() => import('./pages/Dashboard'));
@@ -125,6 +126,8 @@ function Sidebar({ setToken }) {
           );
         })}
       </nav>
+
+      <SidebarLive />
 
       <div className="user-strip">
         <div className="user-avatar">{(user?.username || 'P').slice(0, 1).toUpperCase()}</div>
