@@ -9,7 +9,8 @@ import {
   Trophy, 
   Flag, 
   PlayCircle, 
-  Calendar 
+  Calendar,
+  Clapperboard
 } from 'lucide-react';
 import SportTabs from '../components/SportTabs';
 import { fetchAllScores, getScoreSummary, getSportById, SPORT_CATALOG } from '../data/liveSports';
@@ -464,6 +465,12 @@ export default function Dashboard({ activeSport, setActiveSport, setActiveMatch 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', color: 'var(--hotstar-gold)', zIndex: 2 }}>
             <Trophy size={28} />
             <div style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1.5px', color: '#ffffff' }}>Fantasy</div>
+          </div>
+        </div>
+        <div className="prime-brand-tile" onClick={() => navigate('/movies')} style={{ '--sport-glow-color': 'var(--laliga-coral, #ff4b44)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', color: '#ff4b44', zIndex: 2 }}>
+            <Clapperboard size={28} />
+            <div style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1.5px', color: '#ffffff' }}>Movies</div>
           </div>
         </div>
       </section>

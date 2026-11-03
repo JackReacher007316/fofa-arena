@@ -7,7 +7,8 @@ import {
   Shield, 
   Award, 
   Users, 
-  Tv, 
+  Tv,
+  Clapperboard, 
   Settings, 
   Play, 
   Pause,
@@ -41,6 +42,7 @@ const F1Calendar = React.lazy(() => import('./pages/F1Calendar'));
 const CricketCalendar = React.lazy(() => import('./pages/CricketCalendar'));
 const FootballCalendar = React.lazy(() => import('./pages/FootballCalendar'));
 const WatchLive = React.lazy(() => import('./pages/WatchLive'));
+const Movies = React.lazy(() => import('./pages/Movies'));
 
 function PageLoader() {
   return (
@@ -80,6 +82,7 @@ function Sidebar({ setToken }) {
     { path: '/leaderboard', label: 'Championship', icon: Award },
     { path: '/watch-party', label: 'Watch Party Lobby', icon: Users },
     { path: '/watch-live', label: 'Watch Live', icon: Tv },
+    { path: '/movies', label: 'Movies', icon: Clapperboard },
     { path: '/admin', label: 'Race Engineer', icon: Settings },
   ];
 
@@ -140,6 +143,7 @@ function FloatingNav() {
     { path: '/live/football', label: 'Football', icon: Play },
     { path: '/create-team', label: 'Fantasy', icon: Shield },
     { path: '/leaderboard', label: 'Championship', icon: Award },
+    { path: '/movies', label: 'Movies', icon: Clapperboard },
   ];
 
   return (
@@ -255,6 +259,7 @@ function AppRoutes({ activeSport, setActiveSport, token, activeMatch, setActiveM
       <Route path="/live/:sport" element={<LiveScorePage />} />
       <Route path="/watch-party" element={<WatchParty activeSport={activeSport} setActiveSport={setActiveSport} />} />
       <Route path="/watch-live" element={<WatchLive />} />
+      <Route path="/movies" element={<Movies />} />
       <Route path="/leaderboard" element={<Leaderboard activeSport={activeSport} setActiveSport={setActiveSport} />} />
       <Route
         path="/create-team"
