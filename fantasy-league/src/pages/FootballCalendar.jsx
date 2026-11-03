@@ -111,7 +111,7 @@ export default function FootballCalendar() {
             <div style={{ fontSize: '0.7rem', color: 'var(--gold)', fontFamily: 'var(--font-heading)', letterSpacing: '2px', marginBottom: '8px' }}>
               CHAMPIONSHIP PARTNER
             </div>
-            <h3 style={{ fontSize: '1.25rem', margin: '0 0 12px 0' }}>colatvia.live Broadcast</h3>
+            <h3 style={{ fontSize: '1.25rem', margin: '0 0 12px 0' }}>FOFA Live Broadcast</h3>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
               Enjoy high-definition streams of every tackle, goal, and tactical masterclass live on our built-in player.
             </p>

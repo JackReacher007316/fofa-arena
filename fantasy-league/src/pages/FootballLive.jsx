@@ -94,7 +94,7 @@ function InlineViewer({ url, title, onClose }) {
         <div className="ftb-stream-header">
           <div>
             <h3>{title}</h3>
-            <span className="ftb-stream-meta">Powered by ColaTV • harborfreight22.com</span>
+            <span className="ftb-stream-meta">Streaming live inside FOFA Arena</span>
           </div>
           <div className="ftb-stream-actions">
             <button className="ftb-close-btn" onClick={onClose}><X size={18} /></button>
@@ -198,7 +198,7 @@ export default function FootballLive() {
               Football <span>Schedule & Streaming</span>
             </h1>
             <p className="hero-copy">
-              All matches from Premier League, La Liga, Serie A, Bundesliga, Champions League & FIFA World Cup 2026 — with one-click live streaming powered by ColaTV.
+              All matches from Premier League, La Liga, Serie A, Bundesliga, Champions League & FIFA World Cup 2026 — with one-click live streaming right here inside FOFA Arena.
             </p>
             <button className="ftb-stream-big-btn" onClick={openFullStream}>
               <Play size={18} /> Open Live Stream Player
@@ -232,7 +232,7 @@ export default function FootballLive() {
           <div className="ftb-inline-header">
             <div className="ftb-inline-title-row">
               <h3>{viewerTitle}</h3>
-              <span className="ftb-inline-badge">harborfreight22.com</span>
+              <span className="ftb-inline-badge">FOFA LIVE</span>
             </div>
             <button className="ftb-close-btn" onClick={closeViewer}><X size={16} /></button>
           </div>

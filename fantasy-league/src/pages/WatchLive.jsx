@@ -67,10 +67,10 @@ export default function WatchLive() {
 
   const sportDesc =
     sport === 'football'
-      ? 'Stream the full 2026 Football season matches live. Direct broadcast feed integrated from our streaming partner colatvia.live.'
+      ? 'Stream the full 2026 Football season matches live. Direct broadcast feed embedded right here inside FOFA Arena.'
       : sport === 'cricket'
-      ? 'Stream the full 2026 Cricket calendar matches live. Direct broadcast feed integrated from our streaming partner ePlayHD.'
-      : 'Stream the full F1 2026 Season sessions live. Direct broadcast feed integrated from our streaming partner FullRaces.';
+      ? 'Stream the full 2026 Cricket calendar matches live. Direct broadcast feed embedded right here inside FOFA Arena.'
+      : 'Stream the full F1 2026 Season sessions live. Direct broadcast feed embedded right here inside FOFA Arena.';
 
   useEffect(() => {
     chatOpenRef.current = chatOpen;
