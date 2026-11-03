@@ -28,7 +28,7 @@ const Background3D = React.lazy(() => import('./components/Background3D'));
 import Chatbot from './components/Chatbot';
 import WelcomeAnimation from './components/WelcomeAnimation';
 import SidebarLive from './components/SidebarLive';
-import MercedesStarLogo from './components/MercedesStarLogo';
+import BrandLogo from './components/BrandLogo';
 
 const Dashboard = React.lazy(() => import('./pages/Dashboard'));
 const Leaderboard = React.lazy(() => import('./pages/Leaderboard'));
@@ -101,7 +101,7 @@ function Sidebar({ setToken }) {
   return (
     <aside className="sidebar">
       <div className="sidebar-brand" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <MercedesStarLogo size={24} />
+        <BrandLogo size={30} />
         <div className="brand-title">
           <span style={{ fontWeight: 800 }}>FOFA</span>{' '}
           <span className="brand-gradient-text">ARENA</span>
@@ -343,7 +343,7 @@ export default function App() {
                   }}>
                     <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <MercedesStarLogo size={28} />
+                        <BrandLogo size={32} />
                         <span className="brand-lockup">FOFA <span className="brand-gradient-text">ARENA</span></span>
                       </div>
                       <nav style={{ display: 'flex', gap: '20px', fontSize: '0.85rem', color: '#e5e5e5' }}>
