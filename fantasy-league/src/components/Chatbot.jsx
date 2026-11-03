@@ -2,21 +2,25 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Bot, Sparkles } from 'lucide-react';
 
 const SUGGESTED_QUESTIONS = [
-  "What sports can I track here?",
-  "How do I draft a team?",
-  "Scoring rules breakdown",
-  "Show me the current standings",
-  "How does F1 telemetry work?",
-  "Tips for picking a Captain",
+  "🔴 What's live right now?",
+  "📊 Predict tonight's match",
+  "🎯 Best fantasy picks & captain tips",
+  "📺 How do I watch a match here?",
+  "🎬 What can I watch in Movies?",
+  "📋 Scoring rules breakdown",
 ];
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { id: 1, text: "Hey — I'm **Carlos** 🏎️, your AI companion for FOFA Arena. Ask me anything about drafts, live scores, streaming, or sports strategy.", sender: 'ai' }
+    { id: 1, text: "Hey — I'm **Carlos** 🏎️, FOFA Arena's AI agent, now fully trained on the arena. Ask me what's live, for match predictions, fantasy picks, where to watch — or hit a shortcut below.", sender: 'ai' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [engine, setEngine] = useState(null);
+  useEffect(() => {
+    fetch('/api/ai/status').then(r => r.json()).then(d => setEngine(d.engine)).catch(() => {});
+  }, []);
   const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).slice(2)}`);
   const messagesEndRef = useRef(null);
 
@@ -104,7 +108,7 @@ const Chatbot = () => {
             <div style={{ flex: 1 }}>
               <h3 style={{ margin: 0, fontSize: '1rem', color: '#fff', fontFamily: 'var(--font-heading)', letterSpacing: '1px' }}>Carlos</h3>
               <span style={{ fontSize: '0.7rem', color: '#00c0f9', display: 'flex', alignItems: 'center', gap: '5px', fontFamily: 'var(--font-heading)', letterSpacing: '1px' }}>
-                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#00c0f9', boxShadow: '0 0 8px #00c0f9' }}></span> AI COMPANION • GEMINI
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#00c0f9', boxShadow: '0 0 8px #00c0f9' }}></span> {engine === 'gemini-2.5-flash' ? 'AI AGENT • GEMINI • TRAINED V2' : engine ? 'AI AGENT • SMART MODE' : 'AI AGENT • TRAINED V2'}
               </span>
             </div>
             <Sparkles size={18} color="#f3c623" style={{ opacity: 0.6 }} />
@@ -124,7 +128,7 @@ const Chatbot = () => {
                     ? 'linear-gradient(135deg, #f3c623, #5d2a8f)'
                     : 'rgba(255,255,255,0.06)',
                   border: msg.sender === 'ai' ? '1px solid rgba(255,255,255,0.06)' : 'none',
-                  color: '#fff', fontSize: '0.85rem', lineHeight: '1.5',
+                  color: '#fff', fontSize: '0.85rem', lineHeight: '1.5', whiteSpace: 'pre-wrap',
                   animation: 'fadeIn 0.2s ease',
                   boxShadow: msg.sender === 'user' ? '0 4px 15px rgba(93,42,143,0.2)' : 'none'
                 }}
