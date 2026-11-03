@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import MercedesStarLogo from './MercedesStarLogo';
+import logoLockup from '../assets/logo-lockup.png';
 
 /**
  * FOFA Arena intro — kept deliberately simple & fast:
@@ -44,13 +44,8 @@ export default function WelcomeAnimation() {
       }}
     >
       <div className="simple-intro-rise" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
-        <MercedesStarLogo size={72} />
-        <div style={{
-          fontFamily: 'var(--font-racing)', fontWeight: 900, fontStyle: 'italic',
-          fontSize: '2rem', letterSpacing: '3px', color: '#fff', textTransform: 'uppercase', lineHeight: 1,
-        }}>
-          FOFA <span className="brand-gradient-text">ARENA</span>
-        </div>
+        <img src={logoLockup} alt="FOFA CONNECT" draggable={false}
+          style={{ width: 'min(320px, 72vw)', height: 'auto', display: 'block' }} />
         <div style={{
           fontFamily: 'var(--font-racing)', fontWeight: 700, fontStyle: 'italic',
           fontSize: '0.7rem', letterSpacing: '4px', color: 'var(--muted)', textTransform: 'uppercase',

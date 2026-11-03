@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ShieldCheck, ArrowLeft, Tv, Mail, Phone, Lock, User } from 'lucide-react';
-import MercedesStarLogo from '../components/MercedesStarLogo';
+import BrandLogo from '../components/BrandLogo';
 
 const OTP_LENGTH = 6;
 const RESEND_COOLDOWN = 30;
@@ -239,7 +239,7 @@ const Auth = ({ setToken }) => {
               marginBottom: '16px',
               boxShadow: '0 0 20px rgba(255,255,255,0.05)'
             }}>
-              <MercedesStarLogo size={42} />
+              <BrandLogo size={52} />
             </div>
             <h2>
               <span style={{ fontWeight: 800, color: '#ffffff' }}>FOFA</span>{' '}
